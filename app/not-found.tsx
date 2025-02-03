@@ -1,4 +1,6 @@
-import Link from 'next/link';
+/* Taken from https://tailwindui.com/components/marketing/feedback/404-pages 
+// All rights reserved and credit goes to them
+// */
 
 export default function NotFound() {
     return (
