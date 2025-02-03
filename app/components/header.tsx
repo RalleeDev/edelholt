@@ -1,14 +1,19 @@
 /* Taken from https://tailwindui.com/components/marketing/elements/headers
 // All rights reserved and credit goes to them
 // */
+"use client";
+import { useState } from 'react';
 
 export default function Header() {
+    const [isProjectsOpen, setIsProjectOpen] = useState(false);
+    const [isSideNavOpen, setIsSideNavOpen ] = useState(false);
+
     return (
     <header className="bg-white">
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
+                <span className="sr-only">Rasmus Edelholt</span>
                 <img className="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt=""/>
             </a>
             </div>
@@ -22,12 +27,13 @@ export default function Header() {
             </div>
             <div className="hidden lg:flex lg:gap-x-12">
             <div className="relative">
-                <button type="button" className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900" aria-expanded="false">
-                Product
+                <button type="button" className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900" aria-expanded="false" onClick={() => setIsProjectOpen(!isProjectsOpen)}>
+                Projects
                 <svg className="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                     <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                 </svg>
                 </button>
+                {isProjectsOpen && (
                 <div className="absolute top-full -left-8 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white ring-1 shadow-lg ring-gray-900/5">
                 <div className="p-4">
                     <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
@@ -117,14 +123,15 @@ export default function Header() {
                     </a>
                 </div>
                 </div>
+                )}
             </div>
 
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">Features</a>
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">Marketplace</a>
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">Company</a>
+            <a href="/blog" className="text-sm/6 font-semibold text-gray-900">Blog</a>
+            <a href="/contact" className="text-sm/6 font-semibold text-gray-900">Contact</a>
+            <a href="/about" className="text-sm/6 font-semibold text-gray-900">About me</a>
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            <a href="/login" className="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
             </div>
         </nav>
         <div className="lg:hidden" role="dialog" aria-modal="true">
@@ -132,10 +139,10 @@ export default function Header() {
             <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
+                <p className="sr-only">Rasmus Edelhot</p>
                 <img className="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt=""/>
                 </a>
-                <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">
+                <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={() => setIsSideNavOpen(!isSideNavOpen)}>
                 <span className="sr-only">Close menu</span>
                 <svg className="size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -148,9 +155,10 @@ export default function Header() {
                     <div className="-mx-3">
                     <button type="button" className="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
                         <svg className="size-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                        <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                        <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" onClick={() => setIsProjectOpen(!isProjectsOpen)} />
                         </svg>
                     </button>
+                    {isProjectsOpen && (
                     <div className="mt-2 space-y-2" id="disclosure-1">
                         <a href="#" className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Analytics</a>
                         <a href="#" className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Engagement</a>
@@ -160,10 +168,12 @@ export default function Header() {
                         <a href="#" className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Watch demo</a>
                         <a href="#" className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Contact sales</a>
                     </div>
+                    )}
+
                     </div>
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Features</a>
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Marketplace</a>
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Company</a>
+                    <a href="/blog" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Blog</a>
+                    <a href="/contact" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Contact</a>
+                    <a href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">About me</a>
                 </div>
                 <div className="py-6">
                     <a href="#" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
